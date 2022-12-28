@@ -1,0 +1,13 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "bin": "client.js",
+  "scripts": {
+    "run": "node client.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,231 @@
+/* ======== GLOBAL ======== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --primary: #2EA271;
+
+    --button-primary: #34A671;
+    --button-secondary: #889992;
+    --button-text-primary: #16422C;
+    --button-text-secondary: #1E2D36;
+
+    --menu-primary: #889992;
+
+    --background-light: #232D3E;
+    --background-dark: #1A2332;
+
+    --text-primary: #2EA271;
+    --text-light: #8AAEA3;
+
+    --font-primary: #6ABD97;
+    --font-background-primary: #253D45;
+    --font-secondary: #86A499;
+    --font-background-secondary: #313E4B;
+
+    --warning: #FFAF1D;
+    --warning-background: #423F38;
+    --danger: #E6282C;
+    --danger-background: #422B3A;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    list-style: none;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==== BUTTON ==== */
+button {
+    padding: 0px;
+    border: 0;
+    outline: 0;
+    margin: 0px 15px 0px 15px;
+    padding: 11px;
+    padding-left: 70px;
+    padding-right: 70px;
+    border-radius: 10px;
+    font-weight: 700 !important;
+    font-size: 15px;
+    letter-spacing: -0.01rem;
+    text-transform: uppercase;
+    transition: all ease-in-out 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button.primary {
+    background-color: var(--button-primary);
+    color: var(--button-text-primary);
+}
+
+button.secondary {
+    background-color: var(--button-secondary);
+    color: var(--button-text-secondary);
+}
+
+/* ======== MENU ======== */
+
+.dashboard {
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard .main {
+    overflow-y: scroll;
+}
+
+.main {
+    position: absolute;
+    top: 0;
+    left: 20rem;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.main .title h2 {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+
+/* ======== MEDIA QUERY ======== */
+
+@media (max-width: 480px) {
+    .dashboard .rightmenu {
+    width: 5rem;
+    }
+
+    .dashboard .rightmenu .top .logo {
+    margin-left: 0 !important;
+    }
+
+    .dashboard .rightmenu .menu .item .itemtitle {
+    display: none;
+    }
+
+    .dashboard .rightmenu .menu {
+    margin-left: 0 !important;
+    margin-top: 1rem;
+    }
+
+    .dashboard .settings {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px !important;
+    background-color: unset;
+    }
+
+    .dashboard .rightmenu .menu .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .dashboard .rightmenu .top>:last-child {
+    display: none;
+    }
+
+    .dashboard .rightmenu .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .dashboard .rightmenu .infos {
+    display: none;
+    }
+
+    .dashboard .main {
+    left: 5rem !important;
+    }
+}
+
+@media (max-width: 850px) {
+    .dashboard .rightmenu {
+    width: 5rem;
+    }
+
+    .dashboard .rightmenu .top .logo {
+    margin-left: 0 !important;
+    }
+
+    .dashboard .rightmenu .menu .item .itemtitle {
+    display: none;
+    }
+
+    .dashboard .rightmenu .menu {
+    margin-left: 0 !important;
+    margin-top: 1rem;
+    }
+
+    .dashboard .settings {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px !important;
+    background-color: unset;
+    }
+
+    .dashboard .rightmenu .menu .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .dashboard .rightmenu .top>:last-child {
+    display: none;
+    }
+
+    .dashboard .rightmenu .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .dashboard .rightmenu .infos {
+    display: none;
+    }
+
+    .dashboard .main {
+    left: 5rem !important;
+    }
+
+    .dashboard .main {
+    width: 90%;
+    }
+}

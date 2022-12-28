@@ -1,0 +1,191 @@
+<div class="rightmenu">
+    <div class="top">
+        <img src="/img/logo.png" alt="ash" class="logo">
+        <div class="right">
+            <h2>MintLoader</h2>
+            <h4>1.0.1</h4>
+        </div>
+    </div>
+    <div class="infos">
+        <div class="username">
+            <h3>{{username}}</h3>
+            <a href="/panel/logout"><span class="material-icons-outlined logout">logout</span></a>
+        </div>
+    </div>
+    <div id="rightmenu-menu" class="menu">
+        <a href="/panel/">
+            <div class="item">
+                <span class="material-icons-outlined">smart_toy</span>
+
+                <div class="itemtitle">Bots</div>
+            </div>
+        </a>
+        <a href="/panel/tasks">
+            <div class="item">
+                <span class="material-icons-outlined">task</span>
+
+                <div class="itemtitle">Tasks</div>
+            </div>
+        </a>
+        <a href="/panel/builds">
+            <div class="item">
+                <span class="material-icons-outlined">coronavirus</span>
+
+                <div class="itemtitle">Builds</div>
+
+            </div>
+        </a>
+
+        <a href="/panel/settings"><span class="material-icons-outlined settings">settings</span></a>
+    </div>
+</div>
+
+<script>
+    const current = window.location.pathname.split('/').slice(0).join("/");
+    for (let i = 0; i < document.getElementById("rightmenu-menu").children.length; i++) {
+        const elem = document.getElementById("rightmenu-menu").children[i];
+        if (elem.getAttribute("href") == current) {
+            elem.classList.add("selected");
+        }
+    }
+</script>
+
+<style>
+    .rightmenu {
+        width: 20rem;
+        height: 100%;
+        background-color: var(--background-dark);
+    }
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 1rem;
+    }
+
+    .top .logo {
+        display: block;
+        max-width: 65px;
+        max-height: 65px;
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        margin-left: 0.5rem;
+    }
+
+    .top .right {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-left: 1rem;
+    }
+
+    .top .right h2 {
+        text-shadow: 0 0 15px var(--primary);
+        font-weight: 500;
+        letter-spacing: -0.03rem;
+        color: var(--text-light);
+    }
+
+    .top .right h4 {
+        font-weight: 500;
+        color: gray;
+        letter-spacing: 0.1rem;
+    }
+
+    .infos {
+        margin: 1rem;
+        padding: 1rem;
+        background-color: var(--background-light);
+        border-radius: 20px;
+        color: var(--text-primary);
+    }
+
+    .infos span {
+        color: var(--menu-primary);
+    }
+
+    .infos .username {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 0.5rem;
+    }
+
+    .infos .days {
+        margin-left: 0.5rem;
+        margin-top: 1rem;
+        font-weight: 500;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .rightmenu .menu {
+        margin-left: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        color: var(--text-light);
+    }
+
+    .rightmenu .menu {
+        color: var(--menu-primary);
+    }
+
+    .rightmenu .menu .item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 20px;
+        transition: all ease-in-out 0.3s;
+        cursor: pointer;
+    }
+
+    .rightmenu .menu .selected {
+        color: var(--primary) !important;
+    }
+
+    .rightmenu .menu .item:hover {
+        margin-left: 1rem;
+        color: var(--primary);
+    }
+
+    .rightmenu .menu .item span {
+        font-weight: 500;
+        font-size: 25px;
+    }
+
+    .logout {
+        transition: all ease-in-out 0.4s;
+    }
+
+    .logout:hover {
+        color: var(--primary);
+        cursor: pointer;
+    }
+
+    .settings {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--background-light);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all ease-in-out 0.4s;
+    }
+
+    .settings:hover {
+        rotate: 120deg;
+    }
+
+    .rightmenu a {
+        color: unset !important;
+        text-decoration: none;
+    }
+</style>
