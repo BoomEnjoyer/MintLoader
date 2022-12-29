@@ -12,3 +12,15 @@ exports.botsGet = async (req, res) => {
         username: req.session.username
     })
 };
+
+exports.botsDelete = async (req, res) => {
+    if (typeof req.session.username == 'undefined') {
+        return res.redirect('/panel/login');
+    }
+
+    console.log("t");
+
+    await database.clearOldBots();
+
+    return res.redirect('/panel/bots');
+};

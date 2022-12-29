@@ -33,10 +33,16 @@
                         All other sessions will be disconnected.
                     </div>
                     {{#if password_error}}
-                    <div class="error">{{password_error}}</div>
+                    <div class="error">
+                        <span class="material-icons-outlined">error</span>
+                        {{password_error}}
+                    </div>
                     {{/if}}
                     {{#if password_confirm}}
-                    <div class="confirm">{{password_confirm}}</div>
+                    <div class="confirm">
+                        <span class="material-icons-outlined">check</span>
+                        {{password_confirm}}
+                    </div>
                     {{/if}}
                     <form action="/panel/settings/password" method="post">
                         <div class="input-group">
@@ -98,7 +104,7 @@
         align-items: center;
         color: var(--warning);
         border-radius: 15px;
-        padding: 1rem;
+        padding: 0.5rem;
         gap: 1rem;
         width: 90%;
         background-color: var(--warning-background);
@@ -127,19 +133,27 @@
     }
 
     .box .error {
-        color: var(--danger);
-        background-color: var(--danger-background);
-        padding: 1rem;
-        border-radius: 15px;
-        width: 90%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: var(--danger);
+            border-radius: 15px;
+            padding: 0.5rem;
+            gap: 1rem;
+            width: 90%;
+            background-color: var(--danger-background);
     }
 
     .box .confirm {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         color: var(--font-primary);
-        background-color: var(--font-background-primary);
-        padding: 1rem;
         border-radius: 15px;
+        padding: 0.5rem;
+        gap: 1rem;
         width: 90%;
+        background-color: var(--font-background-primary);
     }
 
     /* ==== INPUTS ==== */

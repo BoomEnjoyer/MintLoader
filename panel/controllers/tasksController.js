@@ -18,9 +18,9 @@ exports.tasksPost = async (req, res) => {
         return res.redirect('/panel/login');
     }
 
-    const goal = req.body.goal;
-    const param = req.body.param;
-    const targeted = req.body.targeted;
+    const goal = req.body.goal,
+        param = req.body.param,
+        targeted = req.body.targeted;
     let countries = req.body.countries;
 
     if (typeof goal == 'undefined' || goal == ''  || typeof param == 'undefined' || param == ''
@@ -44,3 +44,19 @@ exports.tasksPost = async (req, res) => {
         username: req.session.username
     })
 };
+
+exports.taskDelete = async (req, res) => {
+    if (typeof req.session.username == 'undefined') {
+        return res.redirect('/panel/login');
+    }
+
+    const id = req.query.id;
+
+    if (typeof id == 'undefined' || id == '') {
+        return res.redirect('/panel/tasks');
+    }
+
+    await database.deleteTask(id, req.session.username);
+
+    return res.redirect('/panel/tasks');
+}

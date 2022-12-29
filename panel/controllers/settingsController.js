@@ -6,7 +6,9 @@ exports.settingsGet = async (req, res) => {
         return res.redirect('/panel/login');
     }
 
-    return res.render('settings');
+    return res.render('settings', {
+        username: req.session.username
+    });
 };
 
 exports.changePassword = async (req, res) => {
@@ -14,8 +16,8 @@ exports.changePassword = async (req, res) => {
         return res.redirect('/panel/login');
     }
 
-    const password = req.body.password;
-    const passwordConfirm = req.body.passwordConfirm;
+    const password = req.body.password,
+     passwordConfirm = req.body.password_confirm;
 
     if (typeof password == 'undefined' || password == '' || typeof passwordConfirm == 'undefined' || passwordConfirm == '') {
         return res.render('settings', {

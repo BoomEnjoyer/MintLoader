@@ -2,7 +2,7 @@ const express = require("express");
 const hbs = require('express-handlebars');
 const path = require('path');
 const panel = require("./panel/panel");
-const config = require("./config");
+const helpers = require('./panel/helpers');
 const api = require("./api/api");
 
 const start = process.argv.slice(2)[0];
@@ -15,7 +15,7 @@ app.engine('hbs', hbs.engine({
     partialsDir: [
         'panel/views/partials/'
     ],
-    helpers: {},
+    helpers: helpers.helpers,
     defaultLayout: false
 }));
 

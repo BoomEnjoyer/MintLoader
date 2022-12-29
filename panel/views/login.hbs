@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
     <title>Mint, Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
 </head>
 
@@ -14,7 +16,10 @@
             Login
         </div>
         {{#if error}}
-        <div class="error">{{error}}</div>
+        <div class="error">
+            <span class="material-icons-outlined">error</span>
+            {{error}}
+        </div>
         {{/if}}
         <form action="/panel/login" method="post">
             <div class="input-group">
@@ -243,9 +248,17 @@
         }
 
         .error {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             color: var(--danger);
+            border-radius: 15px;
+            padding: 0.5rem;
+            gap: 1rem;
+            width: 90%;
+            background-color: var(--danger-background);
             margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         /* ==== MEDIA QUERY ==== */

@@ -61,14 +61,16 @@
                             <tr>
                                 <td>DATE</td>
                                 <td>INFO</td>
+                                <td>DELETE</td>
                                 <td>DOWNLOAD</td>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each builds}}
                             <tr>
-                                <td>{{date}}</td>
+                                <td>{{toLocal date}}</td>
                                 <td>{{log}}</td>
+                                <td><a href="/panel/builds/delete?id={{_id}}" class="delete"><span class="material-icons-outlined delete">delete</span></a></td>
                                 <td>
                                     <a href="{{path}}">
                                         <div class="download">
@@ -186,6 +188,24 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
+        }
+
+        .table thead tr,
+        .table tbody tr {
+            width: 100%;
+        }
+
+
+        .table thead tr > td,
+        .table tbody tr > td {
+            width: 25%;
+        }
+
+        .table .delete {
+            color: var(--danger);
+            background-color: var(--danger-background);
+            padding: 2px;
+            border-radius: 10px;
         }
 
         .table .download {

@@ -48,7 +48,7 @@
                             <label>Targeted</label>
                         </div>
                         <div class="input-group">
-                            <input type="text" name="countries" id="countries" placeholder="list of countries separated by commas / *." required>
+                            <input type="text" name="countries" id="countries" placeholder="list of countries separated by commas or *." required>
                             <label>Countries</label>
                         </div>
                         <button class="primary">Add Task</button>
@@ -60,7 +60,6 @@
                             <tr>
                                 <td>GOAL</td>
                                 <td>PARAM</td>
-                                <td>DATE</td>
                                 <td>BOTS</td>
                                 <td>COMPLETED</td>
                                 <td>COUNTRIES</td>
@@ -72,11 +71,10 @@
                             <tr>
                                 <td>{{goal}}</td>
                                 <td>{{param}}</td>
-                                <td>{{date}}</td>
                                 <td>{{targeted}}</td>
                                 <td>{{completed}}</td>
                                 <td>{{countries}}</td>
-                                <td><a href="/delete?id={{id}}"><span class="material-icons-outlined delete">delete</span></a></td>
+                                <td><a href="/panel/tasks/delete?id={{_id}}" class="delete"><span class="material-icons-outlined delete">delete</span></a></td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -189,9 +187,19 @@
             justify-content: center;
         }
 
-        .table .download {
-            color: var(--button-text-primary);
-            background-color: var(--button-primary);
+        .table tbody tr,
+        .table thead tr {
+            width: 100%;
+        }
+
+        .table tbody tr > td,
+        .table thead tr > td {
+            width: 16%;
+        }
+
+        .table .delete {
+            color: var(--danger);
+            background-color: var(--danger-background);
             padding: 2px;
             border-radius: 10px;
         }

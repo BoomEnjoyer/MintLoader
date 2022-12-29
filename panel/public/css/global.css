@@ -79,6 +79,11 @@ button.secondary {
     color: var(--button-text-secondary);
 }
 
+button.danger {
+    background-color: var(--danger-background);
+    color: var(--danger);
+}
+
 /* ======== MENU ======== */
 
 .dashboard {

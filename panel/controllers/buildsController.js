@@ -36,8 +36,10 @@ class BuildQueue {
             }
 
             const build = this.queue[0];
+            console.log("t");
             console.log(build.username, build.name, build.ico, build.antivm);
             //TODO: add build mechanism
+            database.addBuild(build.username, "success", "path");
 
             this.queue.shift();
         }
@@ -67,9 +69,9 @@ exports.buildsPost = async (req, res) => {
 
     const builds = await database.getBuilds(req.session.username);
 
-    const ico = req.body.ico;
-    const name = req.body.name;
-    const antivm = typeof req.body.antivm != "undefined" && req.body.antivm == 'on';
+    const ico = req.body.ico,
+        name = req.body.name,
+        antivm = typeof req.body.antivm != "undefined" && req.body.antivm == 'on';
 
     if (typeof ico == 'undefined' || ico == '' || typeof name == 'undefined' || name == '') {
         return res.render('builds', {
@@ -84,7 +86,7 @@ exports.buildsPost = async (req, res) => {
     }
 
     buildQueue.add({
-        username: username,
+        username: req.session.username,
         ico: ico,
         name: name,
         antivm: antivm
@@ -96,3 +98,19 @@ exports.buildsPost = async (req, res) => {
         username: req.session.username
     });
 };
+
+exports.buildDelete = async (req, res) => {
+    if (typeof req.session.username == 'undefined') {
+        return res.redirect('/panel/login');
+    }
+
+    const id = req.query.id;
+
+    if (typeof id == 'undefined' || id == '') {
+        return res.redirect('/panel/builds');
+    }
+
+    await database.deleteBuild(id, req.session.username);
+
+    return res.redirect('/panel/builds');
+}

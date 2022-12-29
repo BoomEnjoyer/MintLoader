@@ -9,8 +9,8 @@ exports.loginGet = async (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.body.username,
+        password = req.body.password;
 
     if (typeof username == 'undefined' || username == '' || typeof password == 'undefined' || password == '') {
         return res.render('login', {
