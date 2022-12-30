@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     }],
     builds: [{
         date: Date,
-        log: String,
+        info: String,
         path: String
     }]
 });

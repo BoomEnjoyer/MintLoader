@@ -170,6 +170,17 @@ async function deleteBuild(id, username) {
     await User.findOneAndUpdate({ username: username }, { $pull: { builds: { _id: id } } }, { new: true });
 }
 
+async function addCompleted(id, taskid) {
+    await User.updateOne({ _id: id, 'tasks._id': taskid }, { $inc: { 'tasks.$.completed': 1}})
+}
+
+async function getBuild(username, buildid) {
+    const user = await User.find({ username: username}).exec();
+    const build = user[0].builds.id(buildid);
+
+    return build;
+}
+
 async function clearOldBots() {
     const botsDb = await Bot.find({}).exec();
 
@@ -189,6 +200,7 @@ module.exports = {
     getBuilds,
     getTasks,
     getBots,
+    getBuild,
     userExist,
     getBots,
     addBuild,
@@ -198,5 +210,6 @@ module.exports = {
     deleteBot,
     getUser,
     newPing,
-    clearOldBots
+    clearOldBots,
+    addCompleted
 }

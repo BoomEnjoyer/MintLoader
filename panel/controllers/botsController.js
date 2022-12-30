@@ -18,8 +18,6 @@ exports.botsDelete = async (req, res) => {
         return res.redirect('/panel/login');
     }
 
-    console.log("t");
-
     await database.clearOldBots();
 
     return res.redirect('/panel/bots');

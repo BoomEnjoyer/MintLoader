@@ -26,5 +26,6 @@ exports.loginPost = async (req, res) => {
     }
 
     req.session.username = username;
+    req.session.userid = user._id;
     return res.redirect('/panel/');
 };
