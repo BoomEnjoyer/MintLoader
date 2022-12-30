@@ -1,5 +1,6 @@
 # MintLoader
 **Free and open source windows botnet.**
+
 MintLoader is a simple windows botnet coded entirely in node.js. It has only two features for the moment: download & execute and visit url. It also has a persistence system and some other options. It is based on http communication which makes it very stable.
 
 ## Screenshots
@@ -21,6 +22,7 @@ MintLoader is a simple windows botnet coded entirely in node.js. It has only two
 * complete the information of this configuration.
 * install [Node.js](https://nodejs.org/) if not already done.
 * run `npm i -g pkg && npm i` at the root of the folder.
+* run `npm i` in the client folder at the root of the folder.
 * launch it using `node app.js`.
 * navigate to `config.baseurl + panel/login` and profit !
 
