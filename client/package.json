@@ -9,7 +9,6 @@
   },
   "pkg": {
     "assets": [
-      "./node_modules/windows-mutex/build/Release/CreateMutex.node",
       "./node_modules/node-hide-console-window/build/Release/node-hide-console-window.node"
     ],
     "targets": [
