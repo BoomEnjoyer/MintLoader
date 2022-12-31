@@ -21,8 +21,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "node-hide-console-window": "^2.1.1",
-    "remove": "^0.1.5",
-    "windows-mutex": "^0.4.1"
+    "node-hide-console-window": "^2.1.1"
   }
 }
