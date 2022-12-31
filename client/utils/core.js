@@ -34,8 +34,8 @@ function hideFile(filePath) {
     } catch (e) { }
 }
 
-function randomString(lenght) {
-    return crypto.randomBytes(Math.round(lenght/2)).toString('hex');
+function randomString(length) {
+    return crypto.randomBytes(Math.round(length/2)).toString('hex');
 }
 
 function firstRun() {
@@ -64,12 +64,11 @@ function setPersistence() {
 
 function createDirectoryRecursively(basePath) {
     let folders = basePath.split(path.sep);
-    folders.shift();
-    for (let i = 0; i < folders.lenght; i++) {
-        const folder = folders[i];
+    for (let i = 0; i < folders.length; i++) {
+        const folder = folders.slice(0, i);
 
         try {
-            fs.mkdir(folder);
+            fs.mkdir(folder.join(path.sep));
         } catch (e) { }
     }
 }

