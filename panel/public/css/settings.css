@@ -1,0 +1,174 @@
+/* ==== SETTINGS ==== */
+.boxes {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 3rem;
+    width: 100%;
+
+    margin-top: 3.5rem;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-light);
+    width: 25rem;
+    gap: 2rem;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.box .title {
+    font-size: 17px;
+    color: #ccc;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.box .warning {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--warning);
+    border-radius: 15px;
+    padding: 0.5rem;
+    gap: 1rem;
+    width: 90%;
+    background-color: var(--warning-background);
+}
+
+.box form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 95%;
+}
+
+.box .title span {
+    color: var(--primary);
+}
+
+.box form .form-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+}
+
+.box .error {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--danger);
+        border-radius: 15px;
+        padding: 0.5rem;
+        gap: 1rem;
+        width: 90%;
+        background-color: var(--danger-background);
+}
+
+.box .confirm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--font-primary);
+    border-radius: 15px;
+    padding: 0.5rem;
+    gap: 1rem;
+    width: 90%;
+    background-color: var(--font-background-primary);
+}
+
+/* ==== INPUTS ==== */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-group input:focus::placeholder {
+    color: transparent;
+}
+
+.input-group:focus-within>label {
+    opacity: 100;
+    top: -0.5em;
+    z-index: 1;
+}
+
+.input-group input:valid+label {
+    opacity: 100;
+    top: -0.5em;
+    z-index: 1;
+}
+
+.input-group>label {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: 0.5em;
+    left: 1em;
+    transition: all 0.3s ease-in-out;
+    padding: 0 0.2em;
+    background-color: var(--background-light);
+}
+
+.input-group input {
+    width: 100% !important;
+}
+
+.box form input[type="checkbox"] {
+    background-color: transparent;
+}
+
+.box form input[type="text"],
+.box form input[type="password"] {
+    height: 1.8rem;
+}
+
+.box form input[type="text"],
+.box form input[type="password"] {
+    border: none;
+    border: 2px solid var(--font-secondary);
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    padding: 0.3rem;
+    border-radius: 15px;
+    color: #ccc;
+    width: 100%;
+    padding-left: 10px;
+
+    transition: all 0.4s ease-in-out;
+}
+
+.box form input[type="text"],
+.box form input[type="password"]:focus {
+    border: 2px solid var(--font-primary);
+}
+
+.box button {
+    margin-top: 0.5rem;
+}
+
+/* ==== MEDIA QUERY ==== */
+@media (max-width: 850px) {
+    .box {
+        width: 15rem;
+    }
+
+    .boxes {
+        flex-direction: column;
+    }
+}

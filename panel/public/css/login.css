@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        :root {
+            --button-primary: #34A671;
+            --button-secondary: #889992;
+            --button-text-primary: #16422C;
+            --button-text-secondary: #1E2D36;
+
+            --background-light: #232D3E;
+            --background-dark: #1A2332;
+
+            --font-primary: #31dd90;
+            --font-secondary: #86A499;
+
+            --warning: #FFAF1D;
+            --warning-background: #423F38;
+            --danger: #E6282C;
+            --danger-background: #422B3A;
+        }
+
+        html {
+            width: 100vw;
+            height: 100vh;
+            list-style: none;
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-dark);
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus {
+            transition: background-color 600000s 0s, color 600000s 0s;
+        }
+        
+        input[data-autocompleted] {
+            background-color: transparent !important;
+        }
+
+        /* ==== BUTTON ==== */
+        button {
+            padding: 0px;
+            border: 0;
+            outline: 0;
+            margin: 0px 15px 0px 15px;
+            padding: 11px;
+            padding-left: 70px;
+            padding-right: 70px;
+            border-radius: 10px;
+            font-weight: 700 !important;
+            font-size: 15px;
+            letter-spacing: -0.01rem;
+            text-transform: uppercase;
+            transition: all ease-in-out 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button.primary {
+            background-color: var(--button-primary);
+            color: var(--button-text-primary);
+        }
+
+        button.secondary {
+            background-color: var(--button-secondary);
+            color: var(--button-text-secondary);
+        }
+
+        /* ==== LOGIN ==== */
+        .box {
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--background-light);
+            width: 25rem;
+            height: 16rem;
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .box .title {
+            font-size: 22px;
+            letter-spacing: 0.03rem;
+            color: var(--font-primary);
+            font-weight: 800;
+        }
+
+        .box .warning {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: var(--warning);
+            border-radius: 15px;
+            padding: 1rem;
+            gap: 1rem;
+            width: 90%;
+            background-color: var(--warning-background);
+        }
+
+        .box form {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            width: 95%;
+        }
+
+        .box .title span {
+            color: var(--primary);
+        }
+
+        .box form .form-control {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* ==== INPUTS ==== */
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .input-group input:focus::placeholder {
+            color: transparent;
+        }
+
+        .input-group:focus-within>label {
+            opacity: 100;
+            top: -0.5em;
+            z-index: 1;
+        }
+
+        .input-group input:valid+label {
+            opacity: 100;
+            top: -0.5em;
+            z-index: 1;
+        }
+
+        .input-group>label {
+            opacity: 0;
+            z-index: -1;
+            position: absolute;
+            top: 0.5em;
+            left: 1em;
+            transition: all 0.3s ease-in-out;
+            padding: 0 0.2em;
+            background-color: var(--background-light);
+            color: var(--font-secondary);
+        }
+
+        .input-group input {
+            width: 100% !important;
+        }
+
+        .box form input[type="checkbox"] {
+            background-color: transparent;
+        }
+
+        .box form input[type="text"],
+        .box form input[type="password"] {
+            height: 1.8rem;
+        }
+
+        .box form input[type="text"],
+        .box form input[type="password"] {
+            border: none;
+            border: 2px solid var(--font-secondary);
+            background: transparent;
+            outline: none;
+            font-size: 15px;
+            padding: 0.3rem;
+            border-radius: 15px;
+            color: #ccc;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        .box form input[type="text"],
+        .box form input[type="password"]:focus {
+            border: 2px solid var(--font-primary);
+        }
+
+        .box button {
+            margin-top: 0.5rem;
+        }
+
+        .error {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: var(--danger);
+            border-radius: 15px;
+            padding: 0.5rem;
+            gap: 1rem;
+            width: 90%;
+            background-color: var(--danger-background);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==== MEDIA QUERY ==== */
+        @media (max-width: 850px) {
+            .box {
+                width: 17rem;
+            }
+        }

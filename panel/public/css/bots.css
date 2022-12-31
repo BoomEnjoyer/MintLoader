@@ -1,0 +1,111 @@
+/* ==== BOTS ==== */
+.bots-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    width: calc((100% - 22rem));
+}
+
+.remove-container {
+    width: calc((100% - 22rem));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    color: #ccc;
+}
+
+.remove {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--background-light);
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+}
+
+.table {
+    margin-top: 1rem;
+    width: 98%;
+}
+
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--background-light);
+    padding: 10px 15px 10px 15px;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.table thead tr td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.table tbody tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #2B3545;
+    letter-spacing: 0.06rem;
+    cursor: pointer;
+    padding: 10px 15px 10px 15px;
+    height: 20px;
+}
+
+.table tbody tr:last-child {
+    border-radius: 0px 0px 15px 15px;
+}
+
+.table tbody tr td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table tbody tr,
+.table thead tr {
+    width: 100%;
+}
+
+.table tbody tr > td,
+.table thead tr > td {
+    width: 16%;
+}
+
+.table .delete {
+    color: var(--danger);
+    background-color: var(--danger-background);
+    padding: 2px;
+    border-radius: 10px;
+}
+
+/* ==== MEDIA QUERY ==== */
+@media (max-width: 850px) {
+    .bots-container {
+        width: calc((100% - 5rem));
+    }
+
+    .main {
+        width: 100% !important;
+    }
+}
